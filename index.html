@@ -136,8 +136,7 @@ h1 span{color:var(--lake)}
   function liveUrl(p, s){
     if (p.live) return p.live;
     if (s && s.homepage) return /^https?:/.test(s.homepage) ? s.homepage : "https://" + s.homepage;
-    if (s && s.pages) { var o = p.repo.split("/"); return "https://" + o[0].toLowerCase() + ".github.io/" + o[1] + "/"; }
-    return null;
+    var o = p.repo.split("/"); return "https://" + o[0].toLowerCase() + ".github.io/" + o[1] + "/";
   }
   function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return { "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]; }); }
 
