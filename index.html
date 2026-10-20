@@ -52,28 +52,36 @@ h1 span{color:var(--lake)}
 .seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
 .spacer{flex:1}
 .count{font:12px var(--mono);color:var(--muted)}
-.grid{display:grid;gap:14px;margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.grid{display:grid;gap:14px;margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
   text-decoration:none;color:inherit;transition:transform .15s ease}
 .card:active{transform:scale(.985)}
-.shot{position:relative;aspect-ratio:1200/680;background:hsl(var(--h) 35% 86%);overflow:hidden;border-bottom:1px solid var(--line)}
+.shot{position:relative;aspect-ratio:3/1;background:hsl(var(--h) 35% 86%);overflow:hidden;border-bottom:1px solid var(--line)}
 @media (prefers-color-scheme: dark){ .shot{background:hsl(var(--h) 22% 22%)} }
 .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
-.shot .mono{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:64px;letter-spacing:-.04em;
+.shot .mono{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:44px;letter-spacing:-.04em;
   color:hsl(var(--h) 40% 38%)}
 @media (prefers-color-scheme: dark){ .shot .mono{color:hsl(var(--h) 45% 70%)} }
 .rank{position:absolute;top:10px;left:10px;font:600 11px var(--mono);background:var(--card);color:var(--ink);border-radius:6px;padding:3px 7px}
-.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+.body{padding:9px 12px 11px;display:flex;flex-direction:column;gap:4px}
 .title{display:flex;align-items:center;gap:8px}
-.title h2{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.1;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.title h2{font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.1;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .tag{font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:3px 7px;border-radius:5px;flex-shrink:0}
 .tag.public{background:var(--lake-soft);color:var(--lake)}
-.tag.private{background:var(--rust-soft);color:var(--rust)}
+.tag.personal{background:var(--rust-soft);color:var(--rust)}
 .url{font:12px var(--mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.desc{font-size:14px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desc{font-size:14px;color:var(--muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 .meta{display:flex;gap:12px;font:12px var(--mono);color:var(--ink);margin-top:2px}
 .meta b{font-weight:600}
 .meta .dot{color:var(--muted)}
+.links{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.links .top{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line);font:12px var(--mono);color:var(--muted)}
+.lrow{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.lrow:last-child{border-bottom:0}
+.lrow .n{font-weight:800;font-size:15px;width:110px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lrow a{flex:1;min-width:0;font:13px var(--mono);color:var(--lake);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none;-webkit-user-select:all;user-select:all}
+.cp{font:600 11px var(--mono);border:1.5px solid var(--ink);background:none;color:var(--ink);border-radius:7px;padding:5px 9px;cursor:pointer;flex-shrink:0}
+.cp.ok{background:var(--ink);color:var(--paper)}
 .empty{font:14px var(--mono);color:var(--muted);text-align:center;padding:48px 0}
 </style>
 </head>
@@ -94,7 +102,11 @@ h1 span{color:var(--lake)}
     <div class="seg" role="group" aria-label="Filter">
       <button data-filter="all" aria-pressed="true">All</button>
       <button data-filter="public" aria-pressed="false">Public</button>
-      <button data-filter="private" aria-pressed="false">Private</button>
+      <button data-filter="personal" aria-pressed="false">Personal</button>
+    </div>
+    <div class="seg" role="group" aria-label="View">
+      <button data-view="cards" aria-pressed="true">Cards</button>
+      <button data-view="links" aria-pressed="false">Links</button>
     </div>
     <span class="spacer"></span><span class="count" id="count"></span>
   </div>
@@ -105,7 +117,8 @@ h1 span{color:var(--lake)}
 <script>
 (function(){
   var KEY = "linkcity.stats.v1", TTL = 3 * 3600 * 1000;
-  var state = { sort: "recent", filter: "all", q: "" };
+  var state = { sort: "recent", filter: "all", q: "", view: "cards" };
+  try { state.view = localStorage.getItem("linkcity.view") || "cards"; } catch(e){}
   var stats = load();
 
   function load(){ try { return JSON.parse(localStorage.getItem(KEY)) || { t: 0, repos: {} }; } catch(e){ return { t: 0, repos: {} }; } }
@@ -144,13 +157,25 @@ h1 span{color:var(--lake)}
 
     document.getElementById("count").textContent = list.length + " / " + window.PROJECTS.length;
     var grid = document.getElementById("grid");
+    grid.className = state.view === "links" ? "links" : "grid";
     if (!list.length) { grid.innerHTML = '<p class="empty">Nothing matches.</p>'; return; }
+    if (state.view === "links") {
+      window.__links = list.map(function(x){ return x.p.name + ": " + (x.url || "https://github.com/" + x.p.repo); });
+      grid.innerHTML = '<div class="top"><span>' + list.length + ' links</span><button class="cp" data-copy="all">Copy all</button></div>' +
+        list.map(function(x, i){
+          var u = x.url || "https://github.com/" + x.p.repo;
+          return '<div class="lrow"><span class="n">' + esc(x.p.name) + '</span><a href="' + esc(u) + '" target="_blank" rel="noopener">' +
+            esc(u.replace(/^https?:\/\//, "")) + '</a><button class="cp" data-copy="' + esc(u) + '">Copy</button></div>';
+        }).join("");
+      return;
+    }
     grid.innerHTML = list.map(function(x, i){
       var href = x.url || "https://github.com/" + x.p.repo;
       var host = x.url ? x.url.replace(/^https?:\/\//, "").replace(/\/$/, "") : "github.com/" + x.p.repo + " · no live site";
+      var og = "https://opengraph.githubassets.com/lc/" + x.p.repo;
       var img = x.url
-        ? '<img loading="lazy" alt="" src="https://s0.wp.com/mshots/v1/' + encodeURIComponent(x.url) + '?w=800&h=453" onerror="this.remove()">'
-        : "";
+        ? '<img loading="lazy" alt="" src="https://s0.wp.com/mshots/v1/' + encodeURIComponent(x.url) + '?w=1200&h=400" onerror="this.onerror=function(){this.remove()};this.src=\'' + og + '\'">'
+        : '<img loading="lazy" alt="" src="' + og + '" onerror="this.remove()">';
       return '<a class="card" href="' + esc(href) + '" target="_blank" rel="noopener" style="--h:' + hue(x.p.repo) + '">' +
         '<div class="shot"><div class="mono">' + esc(x.p.name.slice(0, 2)) + '</div>' + img +
           '<span class="rank">#' + (i + 1) + '</span></div>' +
@@ -210,6 +235,18 @@ h1 span{color:var(--lake)}
     state.sort = b.dataset.sort; document.querySelectorAll("[data-sort]").forEach(function(x){ x.setAttribute("aria-pressed", x === b); }); render(); }); });
   document.querySelectorAll("[data-filter]").forEach(function(b){ b.addEventListener("click", function(){
     state.filter = b.dataset.filter; document.querySelectorAll("[data-filter]").forEach(function(x){ x.setAttribute("aria-pressed", x === b); }); render(); }); });
+  document.querySelectorAll("[data-view]").forEach(function(b){
+    b.setAttribute("aria-pressed", b.dataset.view === state.view);
+    b.addEventListener("click", function(){
+      state.view = b.dataset.view; try { localStorage.setItem("linkcity.view", state.view); } catch(e){}
+      document.querySelectorAll("[data-view]").forEach(function(x){ x.setAttribute("aria-pressed", x === b); }); render(); }); });
+  document.getElementById("grid").addEventListener("click", function(e){
+    var b = e.target.closest("[data-copy]"); if (!b) return;
+    var text = b.dataset.copy === "all" ? window.__links.join("\n") : b.dataset.copy;
+    function done(){ var t = b.textContent; b.textContent = "Copied"; b.classList.add("ok"); setTimeout(function(){ b.textContent = t; b.classList.remove("ok"); }, 1200); }
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+    function fallback(){ var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); done(); }
+  });
   document.getElementById("refresh").addEventListener("click", function(){ refresh(true); });
 
   render();
