@@ -1,0 +1,38 @@
+// Edit this file to tweak names, live links, or public/private tags.
+// "live" overrides whatever GitHub reports. "audience": "public" | "private".
+// The app refreshes pushes, commit counts and homepage links from GitHub on open.
+window.PROJECTS = [
+  { repo: "Joudrie/Codex",          name: "Codex",          audience: "public",  pushed: "2026-10-20T15:21:11Z" },
+  { repo: "Joudrie/job",            name: "Job",            audience: "private", pushed: "2026-10-20T13:29:36Z" },
+  { repo: "Joudrie/pulse",          name: "Pulse",          audience: "public",  pushed: "2026-10-19T23:47:52Z" },
+  { repo: "Joudrie/collegeculture", name: "College Culture",audience: "public",  pushed: "2026-10-18T02:29:21Z" },
+  { repo: "Joudrie/teris",          name: "Teris",          audience: "public",  pushed: "2026-10-15T23:56:40Z" },
+  { repo: "Joudrie/babyname",       name: "Baby Name",      audience: "private", pushed: "2026-10-14T23:29:39Z" },
+  { repo: "Joudrie/WordUp",         name: "WordUp",         audience: "public",  pushed: "2026-10-14T01:18:09Z" },
+  { repo: "Joudrie/lego",           name: "Lego",           audience: "public",  pushed: "2026-10-09T17:04:12Z" },
+  { repo: "Joudrie/Global",         name: "Globalio",       audience: "public",  pushed: "2026-10-09T07:20:52Z", live: "https://globalio.app" },
+  { repo: "Joudrie/reign",          name: "Reign",          audience: "public",  pushed: "2026-10-09T06:38:49Z" },
+  { repo: "Joudrie/Game",           name: "Game",           audience: "public",  pushed: "2026-10-03T15:41:32Z" },
+  { repo: "flexynapp/flexyn2",      name: "Flexyn",         audience: "public",  pushed: "2026-10-02T17:10:51Z" },
+  { repo: "Joudrie/SeanJoudrie",    name: "Sean Joudrie",   audience: "public",  pushed: "2026-10-02T00:46:54Z" },
+  { repo: "Joudrie/dream",          name: "Dream",          audience: "private", pushed: "2026-09-28T23:14:05Z" },
+  { repo: "Joudrie/stool",          name: "Stool",          audience: "private", pushed: "2026-09-28T22:15:39Z" },
+  { repo: "Joudrie/boot",           name: "Boot",           audience: "public",  pushed: "2026-09-09T05:52:08Z" },
+  { repo: "Joudrie/giveaway",       name: "Giveaway",       audience: "public",  pushed: "2026-09-09T02:53:52Z" },
+  { repo: "Joudrie/todo",           name: "Todo",           audience: "private", pushed: "2026-09-07T00:04:25Z" },
+  { repo: "Joudrie/wake",           name: "Wake",           audience: "private", pushed: "2026-08-31T18:16:01Z" },
+  { repo: "Joudrie/FlexChex",       name: "FlexChex",       audience: "public",  pushed: "2026-08-12T16:36:37Z" },
+  { repo: "Joudrie/OCSsurvey",      name: "OCS Survey",     audience: "private", pushed: "2026-08-11T17:31:20Z" },
+  { repo: "Joudrie/sled",           name: "Sled",           audience: "public",  pushed: "2026-08-09T22:24:40Z" },
+  { repo: "Joudrie/color",          name: "Color",          audience: "public",  pushed: "2026-08-06T17:49:13Z" },
+  { repo: "Joudrie/craft",          name: "Craft",          audience: "public",  pushed: "2026-08-06T17:42:31Z" },
+  { repo: "Joudrie/eventr",         name: "Eventr",         audience: "public",  pushed: "2026-08-05T15:39:54Z" },
+  { repo: "Joudrie/DroneDome",      name: "DroneDome",      audience: "public",  pushed: "2026-07-31T23:26:35Z" },
+  { repo: "Joudrie/birb",           name: "Birb",           audience: "public",  pushed: "2026-07-27T02:37:55Z" },
+  { repo: "Joudrie/AARpublic",      name: "AAR (Public)",   audience: "public",  pushed: "2026-07-27T00:55:27Z" },
+  { repo: "Joudrie/AAR",            name: "AAR",            audience: "private", pushed: "2026-07-26T17:56:58Z" },
+  { repo: "Joudrie/Curio",          name: "Curio",          audience: "public",  pushed: "2026-07-06T17:12:33Z" },
+  { repo: "Joudrie/REX",            name: "REX",            audience: "public",  pushed: "2026-07-06T05:23:20Z" },
+  { repo: "Joudrie/drinky",         name: "Drinky",         audience: "public",  pushed: "2026-06-18T05:16:27Z" },
+  { repo: "flexynapp/flexyn1",      name: "Flexyn v1",      audience: "private", pushed: "2026-05-03T19:25:32Z" }
+];
