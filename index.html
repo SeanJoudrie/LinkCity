@@ -147,7 +147,7 @@ h1 span{color:var(--lake)}
       var s = stats.repos[p.repo] || {};
       return { p: p, s: s, pushed: s.pushed || p.pushed, commits: s.commits, url: liveUrl(p, s) };
     }).filter(function(x){
-      if (state.filter !== "all" && x.p.audience !== state.filter) return false;
+      if (state.view !== "links" && state.filter !== "all" && x.p.audience !== state.filter) return false;
       if (!q) return true;
       return (x.p.name + " " + x.p.repo + " " + (x.s.desc || "") + " " + (x.url || "")).toLowerCase().indexOf(q) > -1;
     });
@@ -158,6 +158,7 @@ h1 span{color:var(--lake)}
     document.getElementById("count").textContent = list.length + " / " + window.PROJECTS.length;
     var grid = document.getElementById("grid");
     grid.className = state.view === "links" ? "links" : "grid";
+    document.querySelector('[aria-label="Filter"]').style.display = state.view === "links" ? "none" : "";
     if (!list.length) { grid.innerHTML = '<p class="empty">Nothing matches.</p>'; return; }
     if (state.view === "links") {
       window.__links = list.map(function(x){ return x.p.name + ": " + (x.url || "https://github.com/" + x.p.repo); });
