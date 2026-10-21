@@ -34,7 +34,7 @@ window.PROJECTS = [
   { repo: "Joudrie/DroneDome",      name: "DroneDome",      audience: "public",  pushed: "2026-07-31T23:26:35Z", icon: "dronedome.png" },
   { repo: "Joudrie/birb",           name: "Birb",           audience: "public",  pushed: "2026-07-27T02:37:55Z", icon: "birb" },
   { repo: "Joudrie/AARpublic",      name: "AAR (Public)",   audience: "public",  pushed: "2026-07-27T00:55:27Z", icon: "aarpublic.png" },
-  { repo: "Joudrie/AAR",            name: "AAR",            audience: "personal", pushed: "2026-07-26T17:56:58Z", icon: "aarpublic.png" },
+  { repo: "Joudrie/AAR",            name: "AAR",            audience: "personal", pushed: "2026-07-26T17:56:58Z", live: false, icon: "aarpublic.png" },
   { repo: "Joudrie/Curio",          name: "Curio",          audience: "public",  pushed: "2026-07-06T17:12:33Z", icon: "curio.png" },
   { repo: "Joudrie/REX",            name: "REX",            audience: "public",  pushed: "2026-07-06T05:23:20Z", icon: "rex.png" },
   { repo: "Joudrie/drinky",         name: "Drinky",         audience: "public",  pushed: "2026-06-18T05:16:27Z", icon: "drinky.png" },
