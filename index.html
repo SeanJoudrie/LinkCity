@@ -136,6 +136,7 @@ h1 span{color:var(--lake)}
   }
   function ballpark(n){ if (n == null) return "–"; if (n < 20) return n; if (n < 100) return "~" + Math.round(n / 5) * 5; return "~" + Math.round(n / 10) * 10; }
   function liveUrl(p, s){
+    if (p.live === false) return null;
     if (p.live) return p.live;
     if (s && s.homepage) return /^https?:/.test(s.homepage) ? s.homepage : "https://" + s.homepage;
     var o = p.repo.split("/"); return "https://" + o[0].toLowerCase() + ".github.io/" + o[1] + "/";
