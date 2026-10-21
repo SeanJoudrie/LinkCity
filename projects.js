@@ -3,6 +3,7 @@
 // "live" overrides whatever GitHub reports. "audience": "public" | "personal".
 // The app refreshes pushes, commit counts and homepage links from GitHub on open.
 window.PROJECTS = [
+  { repo: "SeanJoudrie/LinkCity",    name: "Link City",      audience: "public",  pushed: "2026-10-21T00:51:00Z", live: "https://seanjoudrie.github.io/LinkCity/", icon: "linkcity.png" },
   { repo: "Joudrie/Codex",          name: "Codex",          audience: "public",  pushed: "2026-10-20T15:21:11Z", icon: "codex.png" },
   { repo: "Joudrie/job",            name: "Job",            audience: "personal", pushed: "2026-10-20T13:29:36Z", icon: "job" },
   { repo: "Joudrie/pulse",          name: "Pulse",          audience: "public",  pushed: "2026-10-19T23:47:52Z", icon: "pulse.png" },
