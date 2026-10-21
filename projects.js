@@ -7,7 +7,7 @@ window.PROJECTS = [
   { repo: "Joudrie/Codex",          name: "Codex",          audience: "public",  pushed: "2026-10-20T15:21:11Z", icon: "codex.png" },
   { repo: "Joudrie/job",            name: "Job",            audience: "personal", pushed: "2026-10-20T13:29:36Z", icon: "job" },
   { repo: "Joudrie/pulse",          name: "Pulse",          audience: "public",  pushed: "2026-10-19T23:47:52Z", icon: "pulse.png" },
-  { repo: "Joudrie/collegeculture", name: "College Culture",audience: "public",  pushed: "2026-10-18T02:29:21Z", icon: "collegeculture.png" },
+  { repo: "Joudrie/collegeculture", name: "College Culture",audience: "public",  pushed: "2026-10-18T02:29:21Z", icon: "collegeculture" },
   { repo: "Joudrie/teris",          name: "Teris",          audience: "public",  pushed: "2026-10-15T23:56:40Z", icon: "teris.png" },
   { repo: "Joudrie/babyname",       name: "Baby Name",      audience: "personal", pushed: "2026-10-14T23:29:39Z", icon: "babyname" },
   { repo: "Joudrie/WordUp",         name: "WordUp",         audience: "public",  pushed: "2026-10-14T01:18:09Z", icon: "wordup" },
