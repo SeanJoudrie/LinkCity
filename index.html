@@ -166,7 +166,7 @@ h1 span{color:var(--lake)}
       grid.innerHTML = '<div class="top"><span>' + list.length + ' links</span><button class="cp" data-copy="all">Copy all</button></div>' +
         list.map(function(x, i){
           var u = x.url || "https://github.com/" + x.p.repo;
-          return '<div class="lrow">' + (x.p.icon ? '<img class="lico" alt="" src="icons/' + x.p.icon + '.svg">' : "") + '<span class="n">' + esc(x.p.name) + '</span><a href="' + esc(u) + '" target="_blank" rel="noopener">' +
+          return '<div class="lrow">' + (x.p.icon ? '<img class="lico" alt="" src="icons/' + x.p.icon + (/\./.test(x.p.icon) ? '' : '.svg') + '">' : "") + '<span class="n">' + esc(x.p.name) + '</span><a href="' + esc(u) + '" target="_blank" rel="noopener">' +
             esc(u.replace(/^https?:\/\//, "")) + '</a><button class="cp" data-copy="' + esc(u) + '">Copy</button></div>';
         }).join("");
       return;
@@ -180,7 +180,7 @@ h1 span{color:var(--lake)}
         : '<img loading="lazy" alt="" src="' + og + '" onerror="this.remove()">';
       return '<a class="card" href="' + esc(href) + '" target="_blank" rel="noopener" style="--h:' + hue(x.p.repo) + '">' +
         '<div class="shot"><div class="mono">' + esc(x.p.name.slice(0, 2)) + '</div>' + img +
-          '<span class="rank">#' + (i + 1) + '</span>' + (x.p.icon ? '<img class="ico" alt="" src="icons/' + x.p.icon + '.svg">' : "") + '</div>' +
+          '<span class="rank">#' + (i + 1) + '</span>' + (x.p.icon ? '<img class="ico" alt="" src="icons/' + x.p.icon + (/\./.test(x.p.icon) ? '' : '.svg') + '">' : "") + '</div>' +
         '<div class="body"><div class="title"><h2>' + esc(x.p.name) + '</h2><span class="tag ' + x.p.audience + '">' + x.p.audience + '</span></div>' +
           '<div class="url">' + esc(host) + '</div>' +
           (x.s.desc ? '<div class="desc">' + esc(x.s.desc) + '</div>' : "") +
